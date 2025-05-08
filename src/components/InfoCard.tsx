@@ -7,11 +7,18 @@ interface InfoCardProps {
   description: string;
   icon?: React.ReactNode;
   className?: string;
+  onClick?: () => void;
 }
 
-const InfoCard = ({ title, description, icon, className }: InfoCardProps) => {
+const InfoCard = ({ title, description, icon, className, onClick }: InfoCardProps) => {
   return (
-    <div className={cn("quantum-card group hover:shadow-lg transition-all duration-300", className)}>
+    <div 
+      className={cn(
+        "quantum-card group hover:shadow-lg transition-all duration-300 cursor-pointer", 
+        className
+      )}
+      onClick={onClick}
+    >
       <div className="absolute -right-10 -top-10 w-32 h-32 bg-gradient-to-br from-quantum-purple/30 to-quantum-blue/10 rounded-full blur-xl group-hover:opacity-100 opacity-50 transition-opacity"></div>
       
       {icon && (

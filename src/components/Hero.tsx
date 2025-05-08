@@ -1,9 +1,30 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import QuantumVisualization from './QuantumVisualization';
+import { toast } from 'sonner';
 
 const Hero = () => {
+  const navigate = useNavigate();
+  
+  const handleGetStarted = () => {
+    // Scroll to the simulation section
+    const simulationSection = document.querySelector('.py-12.md\\:py-24.bg-background\\/50');
+    if (simulationSection) {
+      simulationSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    toast.success("Welcome to Quantum Cognition Builder!", {
+      description: "Try out our interactive simulation below to get started."
+    });
+  };
+  
+  const handleLearnMore = () => {
+    // Navigate to mathematical framework page
+    navigate('/mathematical-framework');
+  };
+
   return (
     <section className="relative py-12 md:py-24">
       <div className="container px-4 md:px-6">
@@ -21,10 +42,17 @@ const Hero = () => {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Button className="bg-gradient-to-r from-quantum-purple to-quantum-blue hover:opacity-90 transition-opacity">
+              <Button 
+                className="bg-gradient-to-r from-quantum-purple to-quantum-blue hover:opacity-90 transition-opacity"
+                onClick={handleGetStarted}
+              >
                 Get Started
               </Button>
-              <Button variant="outline" className="border-quantum-purple/50 text-quantum-cyan hover:bg-quantum-purple/20 hover:text-white transition-all">
+              <Button 
+                variant="outline" 
+                className="border-quantum-purple/50 text-quantum-cyan hover:bg-quantum-purple/20 hover:text-white transition-all"
+                onClick={handleLearnMore}
+              >
                 Learn More
               </Button>
             </div>
