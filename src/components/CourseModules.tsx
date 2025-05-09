@@ -1,6 +1,5 @@
 
 import React, { useState } from 'react';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Card } from '@/components/ui/card';
@@ -106,7 +105,7 @@ const CourseModules: React.FC<CourseModulesProps> = ({ modules }) => {
       {modules.map((module) => (
         <Card 
           key={module.id}
-          className={`quantum-card transition-all duration-300 hover:shadow-[0_0_10px_rgba(155,135,245,0.5)] ${
+          className={`quantum-card transition-all duration-300 hover:shadow-[0_0_10px_rgba(155,135,245,0.5)] hover:border-quantum-purple/50 ${
             expandedModules.includes(module.id) ? 'border-quantum-purple' : ''
           }`}
         >
@@ -145,6 +144,7 @@ const CourseModules: React.FC<CourseModulesProps> = ({ modules }) => {
                       size="sm"
                       onClick={() => handleLessonAction(lesson)}
                       disabled={lesson.status === 'locked'}
+                      className="hover:bg-quantum-purple/10"
                     >
                       {lesson.status === 'completed' ? 'Review' : 
                        lesson.status === 'in-progress' ? 'Continue' : 'Start'}
@@ -158,7 +158,7 @@ const CourseModules: React.FC<CourseModulesProps> = ({ modules }) => {
                           {lesson.description}
                         </p>
                         
-                        <div className="flex items-center gap-4">
+                        <div className="flex flex-wrap items-center gap-4">
                           {lesson.videoUrl && (
                             <Button 
                               variant="outline" 
