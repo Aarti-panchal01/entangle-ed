@@ -25,7 +25,7 @@ export const quantumComputingModules = [
       {
         id: 'lesson-1-3',
         title: 'Bloch Sphere Visualization',
-        description: 'Learn how to represent and visualize qubits using the Bloch sphere, an intuitive geometric representation of a qubit's quantum state in three dimensions.',
+        description: 'Learn how to represent and visualize qubits using the Bloch sphere, an intuitive geometric representation of a qubit\'s quantum state in three dimensions.',
         status: 'completed' as const,
         videoUrl: '/videos/bloch-sphere.mp4',
         simulationUrl: '/simulator/bloch-sphere'
@@ -173,7 +173,7 @@ export const quantumComputingModules = [
       {
         id: 'lesson-5-2',
         title: "Grover's Search",
-        description: 'Learn about Grover's algorithm, which provides quadratic speedup for searching unstructured databases, a significant quantum advantage for search problems.',
+        description: 'Learn about Grover\'s algorithm, which provides quadratic speedup for searching unstructured databases, a significant quantum advantage for search problems.',
         status: 'locked' as const,
         videoUrl: '/videos/grover-search.mp4',
         simulationUrl: '/simulator/grover-demo'
@@ -181,7 +181,7 @@ export const quantumComputingModules = [
       {
         id: 'lesson-5-3',
         title: "Shor's Factoring Overview",
-        description: 'Explore Shor's factoring algorithm, which can efficiently factor large numbers and potentially break RSA encryption, demonstrating quantum computing's disruptive potential.',
+        description: 'Explore Shor\'s factoring algorithm, which can efficiently factor large numbers and potentially break RSA encryption, demonstrating quantum computing\'s disruptive potential.',
         status: 'locked' as const,
         videoUrl: '/videos/shor-overview.mp4',
         simulationUrl: '/simulator/shor-visualization'
