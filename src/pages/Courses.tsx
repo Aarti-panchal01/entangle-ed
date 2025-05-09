@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
-import { BookOpen, Check, Lock, Star, Award, AlertCircle } from 'lucide-react';
+import { BookOpen, Lock, Star, Award, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 
@@ -57,7 +57,7 @@ const courses: Record<string, Course[]> = {
     {
       id: 'quantum-algorithms',
       title: 'Introduction to Quantum Algorithms',
-      description: 'Explore the basic quantum algorithms that demonstrate quantum advantage, such as Deutsch's algorithm.',
+      description: "Explore the basic quantum algorithms that demonstrate quantum advantage, such as Deutsch's algorithm.",
       difficulty: 'intermediate',
       modules: 6,
       duration: '5 hours',
@@ -247,3 +247,4 @@ const Courses = () => {
 };
 
 export default Courses;
+
