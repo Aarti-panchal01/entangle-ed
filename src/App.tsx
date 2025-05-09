@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import MathematicalFramework from "./pages/MathematicalFramework";
 import Courses from "./pages/Courses";
+import CourseDetail from "./pages/CourseDetail";
 import Dashboard from "./pages/Dashboard";
 import CircuitBuilder from "./pages/CircuitBuilder";
 import AugmentedReality from "./pages/AugmentedReality";
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/mathematical-framework" element={<MathematicalFramework />} />
           <Route path="/courses" element={<Courses />} />
+          <Route path="/course/:courseId" element={<CourseDetail />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/circuit-builder" element={<CircuitBuilder />} />
           <Route path="/ar" element={<AugmentedReality />} />

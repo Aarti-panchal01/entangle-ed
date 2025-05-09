@@ -206,7 +206,7 @@ const Courses = () => {
         <div className="container px-4 md:px-6">
           <div className="text-center max-w-3xl mx-auto mb-10">
             <h1 className="text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-quantum-purple to-quantum-blue">
-              Quantum Learning Path
+              entangle.ED Learning Path
             </h1>
             <p className="text-muted-foreground">
               Structured courses to take you from quantum novice to expert
@@ -247,4 +247,3 @@ const Courses = () => {
 };
 
 export default Courses;
-

@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/componen
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { SendIcon, Sparkles, Bot, User, TrashIcon, DownloadIcon } from 'lucide-react';
+import { SendIcon, Bot, User, TrashIcon } from 'lucide-react';
 
 interface Message {
   id: number;
@@ -61,7 +61,9 @@ const QuantumMentor = () => {
     }
     
     // Check for keywords if no exact match
-    if (lowerMessage.includes("superposition")) {
+    if (lowerMessage.includes("entanglement")) {
+      response = "Quantum entanglement is a phenomenon where two or more quantum particles become correlated in such a way that the quantum state of each particle cannot be described independently of the others, regardless of the distance separating them. Einstein famously referred to this as 'spooky action at a distance.'";
+    } else if (lowerMessage.includes("superposition")) {
       response = "Superposition is a principle of quantum mechanics that describes a quantum particle's ability to exist in multiple states simultaneously until measured. This property is fundamental to quantum computing.";
     } else if (lowerMessage.includes("circuit") || lowerMessage.includes("builder")) {
       response = "Our quantum circuit builder allows you to create and simulate quantum circuits. Would you like me to show you how to use it?";
@@ -73,6 +75,8 @@ const QuantumMentor = () => {
       response = "You're welcome! Feel free to ask if you have more questions about quantum computing.";
     } else if (lowerMessage.includes("help")) {
       response = "I can help you understand quantum computing concepts, guide you through our courses, or assist with using our quantum circuit builder. What would you like to know more about?";
+    } else if (lowerMessage.includes("ar") || lowerMessage.includes("augmented reality")) {
+      response = "Our AR feature allows you to visualize quantum states and phenomena in 3D using your mobile device. Try it out by navigating to the AR section!";
     }
     
     return response;
