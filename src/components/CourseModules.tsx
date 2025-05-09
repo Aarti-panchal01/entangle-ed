@@ -31,6 +31,7 @@ interface CourseModulesProps {
 
 const CourseModules: React.FC<CourseModulesProps> = ({ modules }) => {
   const [expandedModules, setExpandedModules] = useState<string[]>([modules[0].id]);
+  const [expandedLessons, setExpandedLessons] = useState<string[]>([]);
   
   const handleModuleClick = (moduleId: string) => {
     setExpandedModules(prev => 
@@ -48,9 +49,29 @@ const CourseModules: React.FC<CourseModulesProps> = ({ modules }) => {
       return;
     }
     
+    // Toggle expanded state for the lesson
+    setExpandedLessons(prev => 
+      prev.includes(lesson.id) 
+        ? prev.filter(id => id !== lesson.id) 
+        : [...prev, lesson.id]
+    );
+    
     const action = lesson.status === 'completed' ? 'Review' : 'Continue';
     toast.success(`${action} lesson`, {
       description: `Loading ${lesson.title}`
+    });
+  };
+
+  const handleLearnClick = (lesson: Lesson) => {
+    if (lesson.status === 'locked') return;
+    
+    // Always expand the lesson to show its content
+    if (!expandedLessons.includes(lesson.id)) {
+      setExpandedLessons(prev => [...prev, lesson.id]);
+    }
+    
+    toast.success('Opening lesson content', {
+      description: `Loading ${lesson.title} details`
     });
   };
 
@@ -127,66 +148,81 @@ const CourseModules: React.FC<CourseModulesProps> = ({ modules }) => {
             
             <CollapsibleContent className="px-6 pb-6 space-y-4">
               {module.lessons.map((lesson) => (
-                <div 
+                <Collapsible
                   key={lesson.id}
-                  className={`flex flex-col rounded-md bg-background/50 hover:bg-background/70 transition-colors ${
-                    lesson.status === 'locked' ? 'opacity-70' : ''
-                  }`}
+                  open={expandedLessons.includes(lesson.id)}
+                  onOpenChange={() => {
+                    if (lesson.status !== 'locked') {
+                      setExpandedLessons(prev => 
+                        prev.includes(lesson.id) 
+                          ? prev.filter(id => id !== lesson.id) 
+                          : [...prev, lesson.id]
+                      );
+                    }
+                  }}
                 >
-                  <div className="flex items-center justify-between p-4">
-                    <div className="flex items-center gap-3">
-                      {getStatusIcon(lesson.status)}
-                      <span className="font-medium">{lesson.title}</span>
+                  <div 
+                    className={`flex flex-col rounded-md bg-background/50 hover:bg-background/70 transition-colors ${
+                      lesson.status === 'locked' ? 'opacity-70' : ''
+                    }`}
+                  >
+                    <div className="flex items-center justify-between p-4">
+                      <div className="flex items-center gap-3">
+                        {getStatusIcon(lesson.status)}
+                        <span className="font-medium">{lesson.title}</span>
+                      </div>
+                      
+                      <Button 
+                        variant="ghost" 
+                        size="sm"
+                        onClick={() => handleLessonAction(lesson)}
+                        disabled={lesson.status === 'locked'}
+                        className="hover:bg-quantum-purple/10"
+                      >
+                        {lesson.status === 'completed' ? 'Review' : 
+                         lesson.status === 'in-progress' ? 'Continue' : 'Start'}
+                      </Button>
                     </div>
                     
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={() => handleLessonAction(lesson)}
-                      disabled={lesson.status === 'locked'}
-                      className="hover:bg-quantum-purple/10"
-                    >
-                      {lesson.status === 'completed' ? 'Review' : 
-                       lesson.status === 'in-progress' ? 'Continue' : 'Start'}
-                    </Button>
-                  </div>
-                  
-                  {lesson.status !== 'locked' && (
-                    <div className="px-4 pb-4 pt-0">
-                      <div className="p-4 rounded-md bg-background/30 space-y-4">
-                        <p className="text-sm text-muted-foreground">
-                          {lesson.description}
-                        </p>
-                        
-                        <div className="flex flex-wrap items-center gap-4">
-                          {lesson.videoUrl && (
-                            <Button 
-                              variant="outline" 
-                              size="sm"
-                              className="border-quantum-purple/30 hover:bg-quantum-purple/10"
-                              onClick={() => toast.success('Playing video', { description: `Loading ${lesson.title} video` })}
-                            >
-                              <Play className="mr-1 h-4 w-4 text-quantum-purple" />
-                              Watch Explainer
-                            </Button>
-                          )}
-                          
-                          {lesson.simulationUrl && (
-                            <Button 
-                              variant="outline" 
-                              size="sm"
-                              className="border-quantum-cyan/30 hover:bg-quantum-cyan/10"
-                              onClick={() => handleTryItClick(lesson)}
-                            >
-                              <BookOpen className="mr-1 h-4 w-4 text-quantum-cyan" />
-                              Try It
-                            </Button>
-                          )}
+                    <CollapsibleContent>
+                      {lesson.status !== 'locked' && (
+                        <div className="px-4 pb-4 pt-0">
+                          <div className="p-4 rounded-md bg-background/30 space-y-4">
+                            <p className="text-sm text-muted-foreground">
+                              {lesson.description}
+                            </p>
+                            
+                            <div className="flex flex-wrap items-center gap-4">
+                              {lesson.videoUrl && (
+                                <Button 
+                                  variant="outline" 
+                                  size="sm"
+                                  className="border-quantum-purple/30 hover:bg-quantum-purple/10"
+                                  onClick={() => handleLearnClick(lesson)}
+                                >
+                                  <BookOpen className="mr-1 h-4 w-4 text-quantum-purple" />
+                                  Learn
+                                </Button>
+                              )}
+                              
+                              {lesson.simulationUrl && (
+                                <Button 
+                                  variant="outline" 
+                                  size="sm"
+                                  className="border-quantum-cyan/30 hover:bg-quantum-cyan/10"
+                                  onClick={() => handleTryItClick(lesson)}
+                                >
+                                  <BookOpen className="mr-1 h-4 w-4 text-quantum-cyan" />
+                                  Try It
+                                </Button>
+                              )}
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
+                      )}
+                    </CollapsibleContent>
+                  </div>
+                </Collapsible>
               ))}
             </CollapsibleContent>
           </Collapsible>
