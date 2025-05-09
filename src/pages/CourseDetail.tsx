@@ -9,6 +9,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import CourseResources from '@/components/CourseResources';
+import CourseModules from '@/components/CourseModules';
+import { quantumComputingModules } from '@/data/courseModulesData';
 import { BookOpen, ArrowLeft, CheckCircle, Lock, Download } from 'lucide-react';
 
 const CourseDetail = () => {
@@ -26,37 +28,6 @@ const CourseDetail = () => {
     duration: '4 hours',
     instructor: 'Dr. Quantum',
   };
-
-  // Sample modules data
-  const modules = [
-    {
-      id: 'module-1',
-      title: 'Introduction to Quantum Mechanics',
-      status: 'completed',
-      lessons: [
-        { id: 'lesson-1-1', title: 'Classical vs Quantum Physics', status: 'completed' },
-        { id: 'lesson-1-2', title: 'Wave-Particle Duality', status: 'completed' }
-      ]
-    },
-    {
-      id: 'module-2',
-      title: 'Quantum Superposition',
-      status: 'in-progress',
-      lessons: [
-        { id: 'lesson-2-1', title: 'The Principle of Superposition', status: 'in-progress' },
-        { id: 'lesson-2-2', title: 'Mathematical Representation', status: 'locked' }
-      ]
-    },
-    {
-      id: 'module-3',
-      title: 'Quantum Entanglement',
-      status: 'locked',
-      lessons: [
-        { id: 'lesson-3-1', title: 'EPR Paradox', status: 'locked' },
-        { id: 'lesson-3-2', title: 'Bell Inequalities', status: 'locked' }
-      ]
-    }
-  ];
 
   // Sample resources data
   const resources = [
@@ -167,65 +138,7 @@ const CourseDetail = () => {
             </TabsList>
             
             <TabsContent value="content" className="space-y-6">
-              {modules.map((module, index) => (
-                <div 
-                  key={module.id}
-                  className={`quantum-card ${module.status === 'locked' ? 'opacity-70' : ''}`}
-                >
-                  <div className="p-6">
-                    <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-xl font-bold">
-                        Module {index + 1}: {module.title}
-                      </h3>
-                      <Badge 
-                        variant="outline" 
-                        className={
-                          module.status === 'completed' 
-                            ? 'bg-green-500/20 text-green-500 border-green-500/50' 
-                            : module.status === 'in-progress' 
-                            ? 'bg-blue-500/20 text-blue-500 border-blue-500/50' 
-                            : 'bg-muted text-muted-foreground'
-                        }
-                      >
-                        {module.status === 'completed' ? 'Completed' : 
-                         module.status === 'in-progress' ? 'In Progress' : 'Locked'}
-                      </Badge>
-                    </div>
-                    
-                    <div className="space-y-3">
-                      {module.lessons.map((lesson) => (
-                        <div 
-                          key={lesson.id}
-                          className={`flex items-center justify-between p-3 rounded-md bg-background/50 hover:bg-background/70 transition-colors ${
-                            lesson.status === 'locked' ? 'opacity-70' : ''
-                          }`}
-                        >
-                          <div className="flex items-center gap-3">
-                            {lesson.status === 'completed' ? (
-                              <CheckCircle className="h-5 w-5 text-green-500" />
-                            ) : lesson.status === 'locked' ? (
-                              <Lock className="h-5 w-5 text-muted-foreground" />
-                            ) : (
-                              <div className="h-5 w-5 rounded-full border-2 border-blue-500" />
-                            )}
-                            <span>{lesson.title}</span>
-                          </div>
-                          
-                          {lesson.status !== 'locked' && (
-                            <Button 
-                              variant="ghost" 
-                              size="sm"
-                              disabled={lesson.status === 'locked'}
-                            >
-                              {lesson.status === 'completed' ? 'Review' : 'Continue'}
-                            </Button>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
+              <CourseModules modules={quantumComputingModules} />
             </TabsContent>
             
             <TabsContent value="resources">
