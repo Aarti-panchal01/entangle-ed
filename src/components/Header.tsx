@@ -26,9 +26,11 @@ const Header = () => {
         <div className="flex items-center gap-2">
           <Link to="/" className="flex items-center gap-2">
             <div className="relative w-8 h-8">
-              <div className="absolute w-8 h-8 rounded-full bg-quantum-purple animate-pulse-slow"></div>
-              <div className="absolute w-8 h-8 rounded-full bg-quantum-blue animate-spin-slow opacity-70"></div>
-              <div className="absolute w-6 h-6 top-1 left-1 rounded-full bg-quantum-cyan animate-pulse-slow"></div>
+              <img 
+                src="/lovable-uploads/912be702-8124-4171-9486-320ba5b4876c.png" 
+                alt="entangle.ED logo" 
+                className="w-full h-full object-contain"
+              />
             </div>
             <span className="text-xl font-bold tracking-tight">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-quantum-purple via-quantum-blue to-quantum-cyan">

@@ -13,6 +13,7 @@ import Dashboard from "./pages/Dashboard";
 import CircuitBuilder from "./pages/CircuitBuilder";
 import AugmentedReality from "./pages/AugmentedReality";
 
+// Create a QueryClient instance
 const queryClient = new QueryClient();
 
 const App = () => (
