@@ -7,6 +7,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import MathematicalFramework from "./pages/MathematicalFramework";
+import Courses from "./pages/Courses";
+import Dashboard from "./pages/Dashboard";
+import CircuitBuilder from "./pages/CircuitBuilder";
+import AugmentedReality from "./pages/AugmentedReality";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +23,10 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/mathematical-framework" element={<MathematicalFramework />} />
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/circuit-builder" element={<CircuitBuilder />} />
+          <Route path="/ar" element={<AugmentedReality />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
