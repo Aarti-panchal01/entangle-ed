@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
-import { BookOpen, Smartphone, QrCode, ArrowRight, Eye3d, RotateCw, Camera, Download } from 'lucide-react';
+import { BookOpen, Smartphone, QrCode, ArrowRight, Eye, RotateCw, Camera, Download } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface ARModel {
@@ -152,7 +152,7 @@ const AugmentedReality = () => {
                   className="mt-6 bg-gradient-to-r from-quantum-purple to-quantum-blue hover:opacity-90 transition-opacity"
                   onClick={handleLaunchAR}
                 >
-                  <Eye3d className="mr-2 h-4 w-4" />
+                  <Eye className="mr-2 h-4 w-4" />
                   Launch AR Experience
                 </Button>
               </div>
@@ -207,7 +207,7 @@ const AugmentedReality = () => {
                         onClick={() => handleViewInAR(model)}
                         className="w-full bg-gradient-to-r from-quantum-purple to-quantum-blue hover:opacity-90 transition-opacity"
                       >
-                        <Eye3d className="mr-2 h-4 w-4" />
+                        <Eye className="mr-2 h-4 w-4" />
                         View in AR
                       </Button>
                     </CardContent>
@@ -258,7 +258,7 @@ const AugmentedReality = () => {
                         onClick={handleLaunchAR}
                         className="bg-gradient-to-r from-quantum-purple to-quantum-blue hover:opacity-90 transition-opacity"
                       >
-                        <Eye3d className="mr-2 h-4 w-4" />
+                        <Eye className="mr-2 h-4 w-4" />
                         Launch Full AR Experience
                       </Button>
                       
