@@ -2,7 +2,7 @@
 
 **Interactive Quantum Computing Education App**
 
-🔗 Visit the app: [entangle-ed.lovable.app](https://entangle-ed.lovable.app)
+🔗 Visit the app: [entangle-ed](https://entangle-ed.vercel.app/)
 
 ---
 
